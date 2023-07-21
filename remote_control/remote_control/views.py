@@ -89,6 +89,14 @@ def run(request):
 		if bw_status != 0:
 			bw.speed = SPEED
 		debug = "speed =", speed
+	if 'turnangle' in request.GET:
+		angle = int(request.GET['turnangle'])
+		if angle < 45:
+			angle = 45
+		if angle > 135:
+			angle = 135
+		fw.turn = angle
+		debug = "angle =", angle
 	host = stream.get_host().decode('utf-8').split(' ')[0]
 	return render_to_response("run.html", {'host': host})
 
