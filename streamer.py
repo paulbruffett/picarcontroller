@@ -6,9 +6,6 @@ app = Flask(__name__)
 
 vc = cv.VideoCapture(0)
 
-@app.route('/')
-def index():
-    return render_template('index.html')
 
 def gen():
     if vc.isOpened(): # try to get the first frame
