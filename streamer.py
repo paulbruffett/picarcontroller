@@ -12,6 +12,7 @@ def index():
 
 def gen(camera):
     if vc.isOpened(): # try to get the first frame
+        print("capturing frames")
         rval, frame = vc.read()
     else:
         rval = False
