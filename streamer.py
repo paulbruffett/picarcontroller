@@ -1,16 +1,21 @@
 #!/usr/bin/env python
 from flask import Flask, render_template, Response
-from camera import Camera
+import cv2 as cv
 
 app = Flask(__name__)
+
+vc = cv2.VideoCapture(0)
 
 @app.route('/')
 def index():
     return render_template('index.html')
 
 def gen(camera):
-    while True:
-        frame = camera.get_frame()
+    if vc.isOpened(): # try to get the first frame
+        rval, frame = vc.read()
+    else:
+        rval = False
+    while rval:
         yield (b'--frame\r\n'
                b'Content-Type: image/jpeg\r\n\r\n' + frame + b'\r\n')
 
