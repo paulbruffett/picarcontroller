@@ -4,7 +4,7 @@ import cv2 as cv
 
 app = Flask(__name__)
 
-vc = cv2.VideoCapture(0)
+vc = cv.VideoCapture(0)
 
 @app.route('/')
 def index():
